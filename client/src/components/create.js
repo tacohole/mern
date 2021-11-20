@@ -19,19 +19,19 @@ export default class Create extends Component {
 
     onChangePersonName(e) {
         this.setState({
-            person_name: e.target.value
+            person_name: e.target.value,
         });
     };
 
     onChangePersonLevel(e) {
         this.setState({
-            person_level: e.target.value
+            person_level: e.target.value,
         });
     };
 
     onChangePersonPosition(e) {
         this.setState({
-            person_position: e.target.value
+            person_position: e.target.value,
         });
     };
 
@@ -57,14 +57,14 @@ export default class Create extends Component {
 
     render(){
         return(
-            <div style={ {marginTop:20}}>
+            <div style={{ marginTop:20 }}>
                 <h3>Create New Record</h3>
-                <form onSubmit={this.onSubmit()}>
+                <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Name of the Person</label>
                         <input 
                             type="text" 
-                            class="form-control" 
+                            className="form-control" 
                             value={this.state.person_name}
                             onChange={this.onChangePersonName}
                         />
@@ -73,7 +73,7 @@ export default class Create extends Component {
                         <label>Position of the Person</label>
                         <input 
                             type="text" 
-                            class="form-control" 
+                            className="form-control" 
                             value={this.state.person_position}
                             onChange={this.onChangePersonPosition}
                         />
@@ -82,7 +82,7 @@ export default class Create extends Component {
                         <label>Level of the Person</label>
                         <input 
                             type="text" 
-                            class="form-control" 
+                            className="form-control" 
                             value={this.state.person_level}
                             onChange={this.onChangePersonLevel}
                         />
@@ -98,7 +98,7 @@ export default class Create extends Component {
                                 checked={this.state.person_level === "Intern"}
                                 onChange={this.onChangePersonLevel}
                             />
-                        <label className="form-check-label">Junior</label>
+                        <label className="form-check-label">Intern</label>
                         </div>
                         <div className="form-check form-check-inline">
                             <input

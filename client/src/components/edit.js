@@ -1,6 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { withRouter } from 'react-router';
 import axios from "axios";
-import {withRouter} from "react-router";
+
 
 class Edit extends Component {
     constructor(props) {
@@ -17,22 +18,23 @@ class Edit extends Component {
             person_level: "",
             records: [],
         };
+
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios
-            .get("http://localhost:5000/record/" + this.props.match.params.id)
+            .get(`http://localhost:5000/record/` + this.props.match.params.id)
             .then((response) => {
                 this.setState({
                     person_name: response.data.person_name,
                     person_position: response.data.person_position,
                     person_level: response.data.person_level,
-                });
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-    }
+                    });
+                })
+                .catch(function(error) {
+                    console.log(error);
+               });
+     }
 
     onChangePersonName(e) {
         this.setState({
@@ -63,13 +65,16 @@ class Edit extends Component {
         console.log(newEditedPerson);
 
         axios
-            .post("http://localhost:5000/update/" + this.props.params.id, newEditedPerson)
+            .post("http://localhost:5000/update/" + this.props.match.params.id, 
+            newEditedPerson
+            )
             .then((res) => {
                 console.log(res.data);
             });
 
         this.props.history.push("/");
     }
+
 
     render() {
         return(
@@ -146,5 +151,5 @@ class Edit extends Component {
         );
     }
 }
-
+    
 export default withRouter(Edit);

@@ -8,13 +8,8 @@ const Record = (props) => (
         <td>{props.record.person_level}</td>
         <td>{props.record.person_position}</td>
         <td>
-            <Link to={"/edit" + props.record._id}>Edit</Link> |
-            <a 
-                href="/"
-                oncClick={() => {
-                    props.deleteRecord(pros.record._id);
-                }}>Delete
-            </a>
+            <Link to={"/edit/" + props.record._id}>Edit</Link> |
+            <a href="/" onClick={() => {props.deleteRecord(props.record._id);}}>Delete</a>
         </td>      
     </tr>
 );
@@ -48,11 +43,7 @@ export default class RecordList extends Component {
     recordList() {
         return this.state.records.map((currentrecord) => {
             return (
-                <Record
-                    record={currentrecord}
-                    deleteRecord={this.deleteRecord}
-                    key={currentrecord._id}
-                    />
+                <Record record={currentrecord} deleteRecord={this.deleteRecord} key={currentrecord._id}/>
             );
         });
     }
@@ -63,10 +54,12 @@ export default class RecordList extends Component {
                 <h3>Record List</h3>
                 <table className="table table-striped" style={{ marginTop:20}}>
                     <thead>
-                        <tr>Name</tr>
-                        <tr>Position</tr>
-                        <tr>Level</tr>
-                        <tr>Action</tr>
+                        <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Level</th>
+                        <th>Action</th>
+                        </tr>
                     </thead>
                     <tbody>{this.recordList()}</tbody>
                 </table>

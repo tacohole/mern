@@ -32,9 +32,9 @@ recordRoutes.route("/record/:id").get(function(req, res) {
 recordRoutes.route("/record/add").post(function(req,response) {
     let db_connect = dbo.getDb();
     let myobj = {
-        person_name: req.body.person.name,
-        person_position: req.body.person.position,
-        person_level: req.body.person.level,
+        person_name: req.body.person_name,
+        person_position: req.body.person_position,
+        person_level: req.body.person_level,
     };
     db_connect.collection("records").insertOne(myobj, function(err, res) {
         if (err) throw err;
@@ -42,18 +42,19 @@ recordRoutes.route("/record/add").post(function(req,response) {
     });
 });
 
-recordRoutes.route("/update:id").post(function(req,response) {
+recordRoutes.route("/update/:id").post(function(req,response) {
     let db_connect = dbo.getDb();
     let myquery = { _id : ObjectId(req.params.id)};
     let newvalues = {
-        $set:{person_name: req.body.person.name,
-        person_position: req.body.person.position,
-        person_level: req.body.person.level,
+        $set:{
+        person_name: req.body.person_name,
+        person_position: req.body.person_position,
+        person_level: req.body.person_level,
         },
     };
     db_connect
         .collection("records")
-        .updateOne(myquery, newvalues, function(req, res) {
+        .updateOne(myquery, newvalues, function(err, res) {
             if(err) throw err;
             console.log("1 document updated");
             response.json(res);

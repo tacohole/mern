@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavBar from './components/navbar';
 import Edit from './components/edit';
@@ -10,15 +11,15 @@ const App = () => {
     return (
         <div>
             <NavBar />
-            <Route exact path="/">
-                <RecordList />
-            </Route>
-            <Route path="/edit/:id" component={Edit} />
-            <Route path="/create">
-                <Create />
-            </Route>
+                <Route exact path="/">
+                    <RecordList />
+                </Route>
+                <Route path="/edit/:id" component={Edit} />
+                <Route path="/create">
+                    <Create />
+                </Route>
         </div>
     );
 }
 
-export default App
+export default App;
