@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import axios from "axios";
 
 
@@ -68,9 +68,8 @@ class Edit extends Component {
             .post("http://localhost:5000/update/" + this.props.match.params.id, 
             newEditedPerson
             )
-            .then((res) => {
-                console.log(res.data);
-            });
+            .then((res) =>
+                console.log(res.data));
 
         this.props.history.push("/");
     }
